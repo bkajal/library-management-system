@@ -8,6 +8,7 @@ This project was designed during the course at QSP.
 
 package edu.qsp.lms.view;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,6 +29,7 @@ public class View {
 	static Library library = new Library();
 	static Controller controller = new Controller();
 	static {
+		try {
 		System.out.println(" ------------------------------------------ ");
 		System.out.println("| --WELCOME TO LIBRARY MANAGEMENT SYSTEM-- |");
 		System.out.println(" ------------------------------------------ ");
@@ -41,7 +43,11 @@ public class View {
 		int libraryPincode = myInput.nextInt();
 		myInput.nextLine();		
 		library.setPincode(libraryPincode);
-		
+		}catch(InputMismatchException e) {
+			System.out.println(" --------------------------- ");
+			System.out.println("|    --ENTER VALID DATA--   |");
+			System.out.println(" --------------------------- ");
+		}
 	}
 	/**
 	 * main method loads the program to JVM
@@ -52,6 +58,7 @@ public class View {
 		 * do-while performs while condition is true. 
 		 * Switch is used for Menu Driven Options according to userInput
 		 */
+		try {
 		do {
 			System.out.println(" ------------------------------------------ ");
 			System.out.println("\nSelect operation to perform : ");
@@ -59,6 +66,7 @@ public class View {
 			System.out.print("Enter digit respective to desired option : ");
 			int userchoice = myInput.nextInt();
 			myInput.nextLine();
+			
 			switch(userchoice)
 			{
 			case 0:
@@ -167,6 +175,17 @@ public class View {
 			}
 		}
 		while(true);
+		}
+		catch(InputMismatchException e) {
+			System.out.println(" --------------------------- ");
+			System.out.println("|    --ENTER VALID DATA--   |");
+			System.out.println(" --------------------------- ");
+		}
+		catch (Exception e){
+			System.out.println(" ---------------------------- ");
+			System.out.println("|  --SOMETHING WENT WRONG--  |");
+			System.out.println(" ---------------------------- ");
+		}
 	}
 
 }
